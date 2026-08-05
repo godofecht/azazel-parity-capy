@@ -6,7 +6,7 @@ on:
 jobs:
   azazel:
     name: azazel builds capy's backend (macOS)
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
       - uses: mlugg/setup-zig@v2
@@ -28,7 +28,7 @@ jobs:
           test -f zig-out/bin/probe && echo "OK: capy backend compiled"
   zaza:
     name: zaza builds capy's backend (macOS)
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
       - uses: mlugg/setup-zig@v2
