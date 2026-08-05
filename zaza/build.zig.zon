@@ -1,0 +1,17 @@
+.{
+    .name = .zaza_corpus_capy,
+    .version = "0.0.0",
+    .fingerprint = 0xed633779a5203091,
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{
+        .@"zig-objc" = .{
+            .url = "git+https://github.com/mitchellh/zig-objc#2329503f692fd5c8ff4c0528b066a22c40dc58e8",
+            .hash = "zig_objc-0.0.0-Ir_Sp3TyAABFhwDzqDGShnFQmexkp4fHcSTafA9S_Lrh",
+        },
+        .zigimg = .{
+            .url = "git+https://github.com/zigimg/zigimg#74caab5edd7c5f1d2f7d87e5717435ce0f0affa1",
+            .hash = "zigimg-0.1.0-8_eo2nWlEgCddu8EGLOM_RkYshx3sC8tWv-yYA4-htS6",
+        },
+    },
+    .paths = .{ "build.zig", "build.zig.zon", "src" },
+}
