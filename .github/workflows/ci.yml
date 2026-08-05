@@ -6,7 +6,7 @@ on:
 jobs:
   azazel:
     name: azazel builds capy's backend (macOS)
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Cache Zig global cache
@@ -35,7 +35,7 @@ jobs:
           test -f zig-out/bin/probe && echo "OK: capy backend compiled"
   zaza:
     name: zaza builds capy's backend (macOS)
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Cache Zig global cache
