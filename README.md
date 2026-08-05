@@ -39,11 +39,15 @@ AppKit backend.
 
 ## Comparison
 
-| Build | What it does | Config size |
-|-------|--------------|-------------|
-| azazel | capy module (imports + frameworks) + probe, declared as CUE data | `project.cue`, 23 lines |
-| zaza | capy module wired through the standard Zig build graph + probe | `build.zig`,       45 lines |
+Clean-cache builds with dependencies pre-fetched, Apple Silicon, fastest of two runs.
 
-azazel states the package imports, the eleven AppKit frameworks, and libc as
-data; zaza writes the equivalent `addImport` / `linkFramework` calls. Both
-compile the same backend.
+
+| Build | Clean build | Config |
+|-------|-------------|--------|
+| azazel | 4.5 s | `project.cue` — 28 lines · 1324 B |
+| zaza | 4.1 s | `build.zig` — 51 lines · 2076 B |
+
+The upstream's full build is not reproduced here (see the note below), so no native time is listed.
+
+**azazel and zaza both compile capy's full AppKit backend in ~4 s; capy's own example targets are broken upstream at this commit, so its full build is not used as a baseline.**
+
