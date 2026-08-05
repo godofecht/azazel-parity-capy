@@ -27,4 +27,12 @@ probe: #Module & {
 	kind: "exe"
 	root: "src/probe.zig"
 	deps: ["capy"]
+	// The final executable links libc, the AppKit frameworks, and libobjc:
+	// module-level link settings do not reliably reach the exe's link step on
+	// all hosts, so they are stated on the exe that actually links.
+	native: {
+		link_libc: true
+		frameworks: ["CoreData","ApplicationServices","CoreFoundation","CoreGraphics","CoreText","CoreServices","Foundation","AppKit","ColorSync","ImageIO","CFNetwork"]
+		system_libs: ["objc"]
+	}
 }

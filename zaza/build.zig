@@ -38,6 +38,12 @@ pub fn build(b: *std.Build) void {
         }),
     });
     exe.root_module.addImport("capy", capy);
+    // Link the frameworks and libc on the executable that actually links, not
+    // only on the capy module (module-level settings do not reliably reach the
+    // exe link step on all hosts).
+    exe.root_module.link_libc = true;
+    inline for (frameworks) |fw| exe.root_module.linkFramework(fw, .{});
+    exe.root_module.linkSystemLibrary("objc", .{});
     b.installArtifact(exe);
 
     const step = b.step("probe", "Build the capy backend probe");
