@@ -9,6 +9,13 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
+      - name: Cache Zig global cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/zig
+          key: zig-cache-${{ runner.os }}-${{ github.job }}-${{ hashFiles('**/build.zig.zon') }}
+          restore-keys: |
+            zig-cache-${{ runner.os }}-${{ github.job }}-
       - uses: mlugg/setup-zig@v2
         with:
           version: 0.14.1
@@ -31,6 +38,13 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
+      - name: Cache Zig global cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/zig
+          key: zig-cache-${{ runner.os }}-${{ github.job }}-${{ hashFiles('**/build.zig.zon') }}
+          restore-keys: |
+            zig-cache-${{ runner.os }}-${{ github.job }}-
       - uses: mlugg/setup-zig@v2
         with:
           version: 0.14.1
