@@ -7,6 +7,8 @@ jobs:
   azazel:
     name: azazel builds capy's backend (macOS)
     runs-on: macos-14
+    permissions:
+      contents: write   # upload build artifacts to this repo's 'cache' release
     steps:
       - uses: actions/checkout@v4
       - name: Cache Zig global cache
@@ -29,9 +31,11 @@ jobs:
         run: ./azazel/fetch.sh
       - name: Build capy backend via azazel (CUE model)
         working-directory: azazel
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          sh gen_build_spec.sh
-          time zig build
+          # free model-keyed shared cache: HIT downloads zig-out and skips the build
+          time sh cache_build.sh
           test -f zig-out/bin/probe && echo "OK: capy backend compiled"
   zaza:
     name: zaza builds capy's backend (macOS)
